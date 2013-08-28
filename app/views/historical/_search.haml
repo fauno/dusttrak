@@ -1,0 +1,15 @@
+%form.form-inline{:method => 'get', :action => '/'}
+  =select_tag :equipo_id,
+              :collection => @equipos,
+              :fields => [ :nro_serie, :id ],
+              :placeholder => "Equipo",
+              :value => @params[:equipo_id]
+  =text_field_tag :desde,
+                  :class => 'datepicker',
+                  :placeholder => "Desde",
+                  :value => @params[:desde]
+  =text_field_tag :hasta,
+                  :class => 'datepicker',
+                  :placeholder => "Hasta",
+                  :value => @params[:hasta]
+  =submit_tag "Filtrar", :class => 'btn btn-primary'
