@@ -33,7 +33,7 @@ gem 'padrino', '0.11.3'
 # end
 
 # Debug
-gem 'pry'
+gem 'pry-padrino'
 
 # Paginacion
 gem 'will_paginate'
