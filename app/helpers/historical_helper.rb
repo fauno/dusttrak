@@ -45,6 +45,19 @@ Dusttrak::App.helpers do
 
     file = "public/files/#{Time.now} - #{name}.xls"
 
+    # Generar la "vista"
+    h = []
+    historical.each do |i|
+      h.push ({
+       "Id" => i.grd_id,
+       "Fecha" => i.timestamp,
+       "Valor" => i.value,
+       "Cero" => i.parametros.cero,
+       "Escala" => i.parametros.escala,
+       "Concentracion" => i.concentracion
+      })
+    end
+
     begin
       archive = WriteExcel.new(file)
       sheet   = archive.add_worksheet
@@ -54,10 +67,10 @@ Dusttrak::App.helpers do
 
       sheet.write(3, 0, "Filtro: #{name}")
 
-      header = historical[0].attributes.keys
+      header = h[0].keys
       sheet.write(4, 0, header)
 
-      matriz = historical.collect { |row| row.attributes.values }
+      matriz = h.collect { |row| row.values }
       sheet.write(5, 0, matriz.transpose)
 
       archive.close
