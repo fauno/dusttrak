@@ -10,7 +10,7 @@ Dusttrak::App.helpers do
   end
 
   def rango
-    params[:rango].present? ? params[:rango] : Dusttrak::App.rango
+    params[:rango].present? ? params[:rango].to_i : Dusttrak::App.rango
   end
 
   def mostrar_rango?

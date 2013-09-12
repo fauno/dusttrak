@@ -38,7 +38,7 @@ module Dusttrak
     # layout  :my_layout            # Layout can be in views/layouts/foo.ext or views/foo.ext (default :application)
 
     # rango de promedio default
-    set :rango, 15
+    set :rango, 20.minutes
 
     ##
     # You can configure for a specified environment like:
