@@ -8,6 +8,13 @@ alter table aparatos
   add column escala_actual float,
   add column cero_actual integer;
 
+/* 
+ * Agregar columna de concentracion
+ */
+
+alter table historical
+  add column concentracion float;
+
 /*
  * Crear el trigger que inserta los valores específicos de cero y escala
  * y calcula la concentración.
