@@ -1,31 +1,15 @@
 /*
- * Agregar los campos que van a tener los valores actuales para el
- * cálculo de concentración, los específicos van a quedar registrados en
- * historical.
- * TODO mover esto al modelo y eliminar parametros
- */
-alter table aparatos
-  add column escala_actual float,
-  add column cero_actual integer;
-
-/* 
- * Agregar columna de concentracion
- */
-
-alter table historical
-  add column concentracion float;
-
-/*
- * Crear el trigger que inserta los valores específicos de cero y escala
- * y calcula la concentración.
+ * Crear el trigger que calcula la concentración y la inserta en la
+ * tabla de mediciones
  * Necesita permisos de root.
  */
+drop trigger insert_concentracion;
 create trigger insert_concentracion before insert on historical
 for each row
 begin
-  set NEW.zero = (select cero_actual from aparatos where NEW.grd_id = grd);
-  set NEW.scale = (select escala_actual from aparatos where NEW.grd_id = grd);
-  set NEW.concentracion = (NEW.value - NEW.zero) / NEW.concentracion / 1000;
+  insert into mediciones (created_at, grd, concentracion)
+  select NEW.timestamp, NEW.grd_id, (NEW.value - aparatos.cero) / aparatos.escala / 1000
+  from aparatos where NEW.grd_id = grd;
 end
 
 
