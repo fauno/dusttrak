@@ -52,8 +52,8 @@ Dusttrak::App.helpers do
        "Id" => i.grd_id,
        "Fecha" => i.timestamp,
        "Valor" => i.value,
-       "Cero" => i.parametros.cero,
-       "Escala" => i.parametros.escala,
+       "Cero" => i.cero,
+       "Escala" => i.escala,
        "Concentracion" => i.concentracion
       })
     end

@@ -12,8 +12,6 @@ end
 # viejos
 Historical.pluck(:grd_id).uniq.each do |grd|
   unless Aparato.find_by_grd(grd).present?
-    Aparato.create(grd: grd, nombre: "id: #{grd}").parametros.create(
-      created_at: Historical.order(:timestamp).first.timestamp
-    )
+    Aparato.create(grd: grd, nombre: "id: #{grd}")
   end
 end

@@ -10,10 +10,17 @@
 class Historical < ActiveRecord::Base
   self.table_name = 'historical'
 
-  belongs_to :aparato, inverse_of: :mediciones, include: [:parametros],
+  belongs_to :aparato, inverse_of: :mediciones,
     primary_key: :grd, foreign_key: :grd_id
 
   after_initialize :readonly!
+
+  delegate :cero, :escala, to: :aparato, allow_nil: true
+
+  # TODO refactorizarlo con NullObject
+  def aparato
+    super || Aparato.new
+  end
 
   # Generar una consulta como mas_concentracion pero para agrupar y
   # promediar
@@ -45,7 +52,7 @@ class Historical < ActiveRecord::Base
   end
 
   def concentracion
-    (((self.value - parametros.cero) / parametros.escala) / 1000).round(3)
+    (((self.value - self.cero) / self.escala) / 1000).round(3)
   end
 
   def sobre_umbral?
@@ -53,16 +60,6 @@ class Historical < ActiveRecord::Base
   end
 
   def error?
-    self.value < parametros.cero
-  end
-
-  # Devuelve los parámetros usados durante la toma de la medición
-  def parametros
-    if self.aparato.present?
-      self.aparato.parametros.where("created_at <= ?", self.timestamp).first
-    else
-      # TODO sacar esto después de arreglar la concentración promedio
-      Parametro.new
-    end
+    self.value < self.cero
   end
 end
