@@ -7,11 +7,14 @@ else
   logger.info 'Si querías crear un admin probá de nuevo con: `rake db:seed password="el password del admin global"`'
 end
 
-# Aparatos de acuerdo a los historical existentes. Les creamos una
-# configuración inicial con valores por default y que abarque los históricos má
-# viejos
+# Aparatos de acuerdo a los historical existentes. Se crean con cero y escala
+# por default. Hay que modificarlos y correr
+#
+#     rake dusttrak:mediciones_previas
+#
+# para que se creen las mediciones con los cero y escala correctos
 Historical.pluck(:grd_id).uniq.each do |grd|
-  unless Aparato.find_by_grd(grd).present?
-    Aparato.create(grd: grd, nombre: "id: #{grd}")
+  Aparato.find_or_create_by_grd(grd) do |aparato|
+    aparato.nombre = "id: #{grd}"
   end
 end

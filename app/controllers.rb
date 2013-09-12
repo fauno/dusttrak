@@ -5,17 +5,17 @@ Dusttrak::App.controllers  do
   end
 
   get :all do
-    render_all filtrar(Historical)
+    render_all filtrar(Medicion)
   end
 
   # Agrupar cada 15 minutos
   get :grouped do
     @rango = true
-    render_all filtrar(Historical.mas_concentracion_promedio.cada(rango))
+    render_all filtrar(Medicion.mas_concentracion_promedio.cada(rango))
   end
 
   get :above do
-    render_all filtrar(Historical).select(&:sobre_umbral?)
+    render_all filtrar(Medicion).select(&:sobre_umbral?)
   end
 
   # TODO poner esto en el controlador admin y lo de historical en el suyo

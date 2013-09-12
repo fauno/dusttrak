@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "aparatos", :force => true do |t|
     t.string   "nombre"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(:version => 8) do
     t.float    "umbral",     :default => 0.3
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "mediciones", :force => true do |t|
+    t.integer  "grd_id",        :null => false
+    t.float    "concentracion", :null => false
+    t.integer  "valor",         :null => false
+    t.datetime "created_at",    :null => false
   end
 
   create_table "usuarios", :force => true do |t|
