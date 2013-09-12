@@ -2,6 +2,7 @@
  * Agregar los campos que van a tener los valores actuales para el
  * cálculo de concentración, los específicos van a quedar registrados en
  * historical.
+ * TODO mover esto al modelo y eliminar parametros
  */
 alter table aparatos
   add column escala_actual float,
@@ -12,7 +13,7 @@ alter table aparatos
  * y calcula la concentración.
  * Necesita permisos de root.
  */
-create trigger insert_zero before insert on historical
+create trigger insert_concentracion before insert on historical
 for each row
 begin
   set NEW.zero = (select cero_actual from aparatos where NEW.grd_id = grd);
