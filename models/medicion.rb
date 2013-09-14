@@ -38,4 +38,8 @@ class Medicion < ActiveRecord::Base
   def error?
     self.valor < self.cero
   end
+
+  def fecha(offset = 0)
+    (self.created_at + offset).strftime("%d/%m/%Y %T")
+  end
 end

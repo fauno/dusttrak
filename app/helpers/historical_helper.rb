@@ -9,6 +9,14 @@ Dusttrak::App.helpers do
     historical
   end
 
+  def fecha_mas_vieja
+    Medicion.order(:created_at).first.created_at.strftime("%d-%m-%Y")
+  end
+
+  def fecha_mas_nueva
+    Medicion.order(:created_at).last.created_at.strftime("%d-%m-%Y")
+  end
+
   def rango
     params[:rango].present? ? params[:rango].to_i : Dusttrak::App.rango
   end
@@ -50,8 +58,8 @@ Dusttrak::App.helpers do
     historical.each do |i|
       h.push ({
        "Id" => i.grd_id,
-       "Fecha" => i.timestamp,
-       "Valor" => i.value,
+       "Fecha" => i.created_at,
+       "Valor" => i.valor,
        "Cero" => i.cero,
        "Escala" => i.escala,
        "Concentracion" => i.concentracion

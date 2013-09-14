@@ -4,18 +4,20 @@
                 :collection => @aparatos,
                 :fields => [ :nombre, :grd ],
                 :placeholder => "Aparato",
-                :value => params[:grd_id],
+                :selected => params[:grd_id],
+                :include_blank => true,
                 :class => 'form-control'
   .form-group
     =text_field_tag :desde,
                     :class => 'form-control datepicker',
                     :placeholder => "Desde",
-                    :value => params[:desde]
+                    :value => params[:desde] || fecha_mas_vieja
+
   .form-group
     =text_field_tag :hasta,
                     :class => 'form-control datepicker',
                     :placeholder => "Hasta",
-                    :value => params[:hasta]
+                    :value => params[:hasta] || fecha_mas_nueva
 
   = partial 'historical/rango' if mostrar_rango?
 

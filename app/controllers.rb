@@ -11,7 +11,7 @@ Dusttrak::App.controllers  do
   # Agrupar cada 15 minutos
   get :grouped do
     @rango = true
-    render_all filtrar(Medicion.mas_concentracion_promedio.cada(rango))
+    render_all filtrar(Medicion.promediar_cada(rango)).all
   end
 
   get :above do
