@@ -16,6 +16,9 @@ GEM
     bcrypt-ruby (3.1.1)
     builder (3.0.4)
     coderay (1.0.9)
+    database_cleaner (1.0.1)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
     haml (4.0.3)
       tilt
     http_router (0.11.0)
@@ -96,6 +99,8 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   bcrypt-ruby
+  database_cleaner
+  factory_girl
   haml
   minitest
   mysql2

@@ -23,6 +23,8 @@ gem 'bcrypt-ruby', require: 'bcrypt'
 group :test do
   gem 'minitest', require: 'minitest/autorun'
   gem 'rack-test', require: 'rack/test'
+  gem 'factory_girl'
+  gem 'database_cleaner'
 end
 
 # Padrino Stable Gem
