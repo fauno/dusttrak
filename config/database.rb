@@ -30,10 +30,10 @@ ActiveRecord::Base.configurations[:test] = {
   :reconnect => true,
   :database  => 'dusttrak_test',
   :pool      => 5,
-  :username  => 'root',
-  :password  => '',
+  :username  => 'dusttrak',
+  :password  => 'hola',
   :host      => 'localhost',
-  :socket    => '/tmp/mysql.sock'
+  :socket    => '/run/mysqld/mysqld.sock'
 
 }
 
