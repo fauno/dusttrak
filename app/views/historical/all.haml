@@ -23,4 +23,4 @@
             = h.fecha
         - unless mostrar_rango?
           %td.list-column{class: h.error? ? 'danger' : '' }=h.valor
-        %td.list-column{class: (h.concentracion < 0 or h.sobre_umbral?) ? 'danger' : ''}=h.concentracion.round(3)
+        %td.list-column{class: (h.error? or h.sobre_umbral?) ? 'danger' : ''}=h.concentracion.round(3)

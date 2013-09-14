@@ -36,7 +36,7 @@ class Medicion < ActiveRecord::Base
   end
 
   def error?
-    self.valor < self.cero
+    self.concentracion < 0
   end
 
   def fecha(offset = 0)
