@@ -31,6 +31,10 @@ class Medicion < ActiveRecord::Base
       DateTime.parse(timestamp).strftime("%Y-%m-%d 23:59:59")
   end
 
+  def self.sobre_umbral
+    where('concentracion > ?', Configuracion.umbral)
+  end
+
   def sobre_umbral?
     self.concentracion > Configuracion.umbral
   end
