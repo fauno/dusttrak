@@ -20,6 +20,10 @@ gem 'mysql2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 
 # Test requirements
+group :test do
+  gem 'minitest', require: 'minitest/autorun'
+  gem 'rack-test', require: 'rack/test'
+end
 
 # Padrino Stable Gem
 gem 'padrino', '0.11.3'
