@@ -37,6 +37,7 @@ Padrino.before_load do
   # Más general que `table_name`
   ActiveSupport::Inflector.inflections do |i|
     i.irregular 'configuracion', 'configuraciones'
+    i.irregular 'medicion', 'mediciones'
   end
 end
 

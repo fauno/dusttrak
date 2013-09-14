@@ -7,18 +7,20 @@
   %thead
     %tr
       %th.header Id
-      %th.header Fecha
-      %th.header Valor
-      %th.header Cero
-      %th.header Escala
+      %th.header= mostrar_rango? ? 'Rango del promedio' : 'Fecha'
+      - unless mostrar_rango?
+        %th.header Valor
       %th.header Concentración mg/m3
 
   %tbody
     -@historical.each do |h|
       %tr.list-row
         %td.list-column=h.grd_id
-        %td.list-column=h.timestamp
-        %td{class: h.error? ? 'list-column warning' : 'list-column' }=h.value
-        %td.list-column=h.parametros.cero
-        %td.list-column=h.parametros.escala
-        %td{class: h.sobre_umbral? ? 'list-column danger' : 'list-column' }=h.concentracion
+        %td.list-column
+          - if mostrar_rango?
+            = "#{h.fecha} - #{h.fecha(rango)}"
+          - else
+            = h.fecha
+        - unless mostrar_rango?
+          %td.list-column{class: h.error? ? 'danger' : '' }=h.valor
+        %td.list-column{class: (h.error? or h.sobre_umbral?) ? 'danger' : ''}=h.concentracion.round(3)

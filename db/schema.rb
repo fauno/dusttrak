@@ -11,14 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 6) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "aparatos", :force => true do |t|
     t.string   "nombre"
     t.text     "observaciones"
     t.integer  "grd"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.float    "escala",        :default => 3.2
+    t.integer  "cero",          :default => 3996
   end
 
   create_table "configuraciones", :force => true do |t|
@@ -27,12 +29,11 @@ ActiveRecord::Schema.define(:version => 6) do
     t.datetime "updated_at",                  :null => false
   end
 
-  create_table "parametros", :force => true do |t|
-    t.integer  "aparato_id"
-    t.float    "escala",     :default => 3.2
-    t.integer  "cero",       :default => 3996
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+  create_table "mediciones", :force => true do |t|
+    t.integer  "grd_id",        :null => false
+    t.float    "concentracion", :null => false
+    t.integer  "valor",         :null => false
+    t.datetime "created_at",    :null => false
   end
 
   create_table "usuarios", :force => true do |t|

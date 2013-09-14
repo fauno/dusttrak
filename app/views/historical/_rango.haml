@@ -1,5 +1,7 @@
 .form-group
   =select_tag :rango,
-              :options => %w{ 15 30 60 },
-              :selected => rango,
-              :class => 'form-control'
+              options: [  [ '20 min', 20.minutes ],
+                          [ '60 min', 60.minutes ],
+                          [ '24 hrs', 24.hours   ] ],
+              selected: rango,
+              class: 'form-control'
