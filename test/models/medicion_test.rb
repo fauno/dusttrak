@@ -12,7 +12,14 @@ describe Medicion do
 
       promedios.size.must_equal 2
       promedios.each do |p|
-        promedio = p.grd_id == 1 ? (0.2 + 0.8)/2 : (0.2 + 0.4)/2
+        promedio = case p.grd_id
+          when 1
+            (0.2 + 0.8)/2
+          when 2
+            (0.2 + 0.4)/2
+          else
+            flunk "Apareció un grd_id que nada que ver"
+        end
 
         # con más de 5 decimales hay diferencia (wtf!)
         p.concentracion.round(5).must_equal promedio.round(5)
