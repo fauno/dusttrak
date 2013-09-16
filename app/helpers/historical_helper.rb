@@ -10,11 +10,11 @@ Dusttrak::App.helpers do
   end
 
   def fecha_mas_vieja
-    Medicion.order(:created_at).first.created_at.strftime("%d-%m-%Y")
+    Medicion.last.created_at.strftime("%d-%m-%Y")
   end
 
   def fecha_mas_nueva
-    Medicion.order(:created_at).last.created_at.strftime("%d-%m-%Y")
+    Medicion.first.created_at.strftime("%d-%m-%Y")
   end
 
   def rango
