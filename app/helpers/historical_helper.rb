@@ -33,7 +33,7 @@ Dusttrak::App.helpers do
     if params[:xls].present?
       file = write_xls(historical)
 
-      if not file == false
+      if file.present?
         send_file file, type: 'application/vnd.ms-excel', filename: File.basename(file)
       end
     else
