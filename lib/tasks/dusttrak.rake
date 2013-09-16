@@ -38,7 +38,7 @@ namespace :dusttrak do
 
     pool = ActiveRecord::Base.establish_connection(spec)
 
-    pool.connection.execute('drop trigger insert_concentracion;')
+    pool.connection.execute('drop trigger if exists insert_concentracion;')
     pool.connection.execute('
       create trigger insert_concentracion before insert on historical
       for each row
