@@ -16,18 +16,6 @@
   .controls
     =f.text_field :grd, :class => 'input-xlarge input-with-feedback'
     %span.help-inline=error ? f.error_message_on(:grd, :class => 'text-error') : pat(:example)
-- error = @aparato.errors.include?(:cero_actual)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :cero_actual, :class => 'control-label'
-  .controls
-    =f.text_field :cero_actual, :class => 'input-xlarge input-with-feedback'
-    %span.help-inline=error ? f.error_message_on(:cero_actual, :class => 'text-error') : pat(:example)
-- error = @aparato.errors.include?(:escala_actual)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :escala_actual, :class => 'control-label'
-  .controls
-    =f.text_field :escala_actual, :class => 'input-xlarge input-with-feedback'
-    %span.help-inline=error ? f.error_message_on(:escala_actual, :class => 'text-error') : pat(:example)
 - error = @aparato.errors.include?(:escala)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :escala, :class => 'control-label'

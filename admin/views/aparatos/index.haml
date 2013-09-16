@@ -32,8 +32,6 @@
         %th.header= mat(:aparato, :grd)
         %th.header= mat(:aparato, :created_at)
         %th.header= mat(:aparato, :updated_at)
-        %th.header= mat(:aparato, :cero_actual)
-        %th.header= mat(:aparato, :escala_actual)
         %th.header= mat(:aparato, :escala)
         %th.header= mat(:aparato, :cero)
         %th.header.list-row-action-header
@@ -49,8 +47,6 @@
           %td.list-column=aparato.grd
           %td.list-column=time_ago_in_words aparato.created_at
           %td.list-column=time_ago_in_words aparato.updated_at
-          %td.list-column=aparato.cero_actual
-          %td.list-column=aparato.escala_actual
           %td.list-column=aparato.escala
           %td.list-column=aparato.cero
           %td.list-column.list-row-action
