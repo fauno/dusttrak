@@ -64,8 +64,6 @@ Dusttrak::App.helpers do
        "Id" => i.grd_id,
        "Fecha" => i.created_at,
        "Valor" => i.valor,
-       "Cero" => i.cero,
-       "Escala" => i.escala,
        "Concentracion" => i.concentracion
       })
     end
@@ -87,7 +85,7 @@ Dusttrak::App.helpers do
 
       archive.close
     rescue
-      return false
+      return nil
     end
 
     # Devolver el nombre de archivo
