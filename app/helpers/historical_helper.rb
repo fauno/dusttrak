@@ -10,11 +10,11 @@ Dusttrak::App.helpers do
   end
 
   def fecha_mas_vieja
-    Medicion.order(:created_at).first.created_at.strftime("%d-%m-%Y")
+    Medicion.last.created_at.strftime("%d-%m-%Y")
   end
 
   def fecha_mas_nueva
-    Medicion.order(:created_at).last.created_at.strftime("%d-%m-%Y")
+    Medicion.first.created_at.strftime("%d-%m-%Y")
   end
 
   def rango
@@ -26,6 +26,10 @@ Dusttrak::App.helpers do
   end
 
   def render_all(historical)
+    if not historical.any?
+      halt 404, haml(:none)
+    end
+
     if params[:xls].present?
       file = write_xls(historical)
 
@@ -60,8 +64,6 @@ Dusttrak::App.helpers do
        "Id" => i.grd_id,
        "Fecha" => i.created_at,
        "Valor" => i.valor,
-       "Cero" => i.cero,
-       "Escala" => i.escala,
        "Concentracion" => i.concentracion
       })
     end
@@ -83,7 +85,7 @@ Dusttrak::App.helpers do
 
       archive.close
     rescue
-      return false
+      return nil
     end
 
     # Devolver el nombre de archivo
