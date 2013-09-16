@@ -26,6 +26,10 @@ Dusttrak::App.helpers do
   end
 
   def render_all(historical)
+    if not historical.any?
+      halt 404, haml(:none)
+    end
+
     if params[:xls].present?
       file = write_xls(historical)
 
