@@ -37,28 +37,28 @@ procesados de la siguiente manera:
 
 um ejemplo de tabla de promedios de 15 minutos
 
-ID	|		TIMESTAMP		|	mG
-10	|      25/03 15:00 a 25/03 15:15	|    0.02mG/m3
-10	|      25/03 15:15 a 25/03 15:30	|    0.02mG/m3
+ID  | TIMESTAMP                   | mG
+10  | 25/03 15:00 a 25/03 15:15   | 0.02mG/m3
+10  | 25/03 15:15 a 25/03 15:30   | 0.02mG/m3
 
 
 ejemplo de tabla por encima de umbral sin promediar
 
-ID	|	TIMESTAMP	|	mG
-10	|      25/03 16:00	|   1.00mG/m3
-10	|      25/03 16:02	|   1.00mG/m3
-10	|      25/03 16:04	|   1.00mG/m3
+ID  | TIMESTAMP     |   mG
+10  | 25/03 16:00   |   1.00mG/m3
+10  | 25/03 16:02   |   1.00mG/m3
+10  | 25/03 16:04   |   1.00mG/m3
 
 ejemplo de tabla de sin promediar de todos los datos resaltando filas
 por encima de umbral
 
-ID	|	TIMESTAMP	|	mG
-10	|      25/03 16:00	|   0.02mG/m3
-10	|      25/03 16:02	|   0.03mG/m3
-10	|      25/03 16:04	|   0.50mG/m3
-10	|      25/03 16:06	|   1.00mG/m3***
-10	|      25/03 16:08	|   1.00mG/m3***
-10	|      25/03 16:10	|   0.30mG/m3
+ID  | TIMESTAMP     | mG
+10  | 25/03 16:00   | 0.02mG/m3
+10  | 25/03 16:02   | 0.03mG/m3
+10  | 25/03 16:04   | 0.50mG/m3
+10  | 25/03 16:06   | 1.00mG/m3***
+10  | 25/03 16:08   | 1.00mG/m3***
+10  | 25/03 16:10   | 0.30mG/m3
 
 
 La mecanica del dispositivo es la siguiente:
@@ -109,7 +109,7 @@ R   =  Rango entre el 0 y el Fs (µA)
 Fs  =  Fondo de escala (5000µG/m3)
 
 
-Entonces 
+Entonces
 
   16000µA
  --------- = 3.2µA/µG/m3
@@ -122,7 +122,7 @@ I  =  4135µA (tomado de 'value')
 F  =  3992µA (tomado con amperimetro poniendo el exemys en 0mG/m3)
 E  =  3.2µA/µG/m3
 
-4135µA - 3992µA 
+4135µA - 3992µA
 --------------- =  44.68µG/m3 = 0.044mG/m3
    3.2µA/µG/m3
 

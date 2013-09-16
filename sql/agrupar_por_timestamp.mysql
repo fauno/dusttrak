@@ -1,0 +1,16 @@
+select
+  count(*) as 'valores_agrupados',
+  date(`timestamp`) as 'fecha',
+  group_concat(time(`timestamp`)) as 'timestamps',
+-- F = 2500 // parametrizable
+-- E = 3.2  // parametrizable
+-- La división por mil es la conversión µG a mG
+  avg(((value - 2500) / 3.2) / 1000) as 'concentracion_promedio'
+from historical
+-- Agrupar cada 15 minutos
+-- http://forums.mysql.com/read.php?10,174757,176666#msg-176666
+-- Dividimos los minutos de cada hora por el valor de agrupación para
+-- poder parametrizarlo.  Se asume que la multiplicación por tres lleva
+-- esta relación con la respuesta original (cada 20 minutos).
+group by ((60/15) * hour(`timestamp`) + floor(minute(`timestamp`) / 15))
+order by `timestamp`

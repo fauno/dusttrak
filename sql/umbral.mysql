@@ -1,0 +1,11 @@
+select
+  grd_id,
+  `timestamp`,
+-- F = 2500 // parametrizable
+-- E = 3.2  // parametrizable
+-- La división por mil es la conversión µG a mG
+  ((value - 2500) / 3.2) / 1000 as 'concentracion'
+from historical
+-- Umbral = 0.3 // parametrizable
+having concentracion > 0.3
+order by `timestamp`

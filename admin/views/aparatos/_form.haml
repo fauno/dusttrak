@@ -1,0 +1,37 @@
+- error = @aparato.errors.include?(:nombre)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :nombre, :class => 'control-label'
+  .controls
+    =f.text_field :nombre, :class => 'input-xlarge input-with-feedback', :autofocus => true
+    %span.help-inline=error ? f.error_message_on(:nombre, :class => 'text-error') : pat(:example)
+- error = @aparato.errors.include?(:observaciones)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :observaciones, :class => 'control-label'
+  .controls
+    ~f.text_area :observaciones, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:observaciones, :class => 'text-error') : pat(:example)
+- error = @aparato.errors.include?(:grd)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :grd, :class => 'control-label'
+  .controls
+    =f.text_field :grd, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:grd, :class => 'text-error') : pat(:example)
+- error = @aparato.errors.include?(:escala)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :escala, :class => 'control-label'
+  .controls
+    =f.text_field :escala, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:escala, :class => 'text-error') : pat(:example)
+- error = @aparato.errors.include?(:cero)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :cero, :class => 'control-label'
+  .controls
+    =f.text_field :cero, :class => 'input-xlarge input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:cero, :class => 'text-error') : pat(:example)
+
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:aparatos, :index), :class => 'btn'

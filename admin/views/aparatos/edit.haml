@@ -1,0 +1,8 @@
+%ul.nav.nav-tabs
+  %li=link_to tag_icon(:list, pat(:list)), url(:aparatos, :index)
+  %li=link_to tag_icon(:plus, pat(:new)), url(:aparatos, :new)
+  %li.active=link_to tag_icon(:edit, pat(:edit)), url(:aparatos, :edit, :id => @aparato.id)
+
+.tabs-content
+  -form_for :aparato, url(:aparatos, :update, :id => @aparato.id), :method => :put, :class => 'form-horizontal' do |f|
+    =partial 'aparatos/form', :locals => { :f => f }

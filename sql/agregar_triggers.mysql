@@ -1,0 +1,13 @@
+/*
+ * Crear el trigger que calcula la concentración y la inserta en la
+ * tabla de mediciones
+ * Necesita permisos de root.
+ */
+drop trigger if exists insert_concentracion;
+create trigger insert_concentracion before insert on historical
+for each row
+begin
+  insert into mediciones (created_at, grd_id, concentracion, valor)
+  select NEW.timestamp, NEW.grd_id, (NEW.value - aparatos.cero) / aparatos.escala / 1000, NEW.value
+  from aparatos where NEW.grd_id = grd;
+end

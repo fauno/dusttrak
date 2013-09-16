@@ -1,0 +1,32 @@
+%form.form-inline{:method => 'get'}
+  .form-group
+    =select_tag :grd_id,
+                :collection => @aparatos,
+                :fields => [ :nombre, :grd ],
+                :placeholder => "Aparato",
+                :selected => params[:grd_id],
+                :include_blank => true,
+                :class => 'form-control'
+  .form-group
+    =text_field_tag :desde,
+                    :class => 'form-control datepicker',
+                    :placeholder => "Desde",
+                    :value => params[:desde] || fecha_mas_vieja
+
+  .form-group
+    =text_field_tag :hasta,
+                    :class => 'form-control datepicker',
+                    :placeholder => "Hasta",
+                    :value => params[:hasta] || fecha_mas_nueva
+
+  = partial 'historical/rango' if mostrar_rango?
+
+  .form-group
+    %label
+      =check_box_tag :xls, value: 1
+      Descargar
+  .form-group
+    =submit_tag "Filtrar", :class => 'btn btn-primary'
+
+= javascript_include_tag 'jquery', 'bootstrap-datepicker',
+    'bootstrap-datepicker.es', 'init-datepicker'

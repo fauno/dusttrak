@@ -1,0 +1,26 @@
+-# encoding: utf-8
+=partial 'historical/search'
+
+=(will_paginate(@historical, renderer: bootstrap, bootstrap: 3) || "").html_safe
+
+%table#list.table.table-striped.table-hover.table-condensed
+  %thead
+    %tr
+      %th.header Id
+      %th.header= mostrar_rango? ? 'Rango del promedio' : 'Fecha'
+      - unless mostrar_rango?
+        %th.header Valor
+      %th.header Concentración mg/m3
+
+  %tbody
+    -@historical.each do |h|
+      %tr.list-row
+        %td.list-column=h.grd_id
+        %td.list-column
+          - if mostrar_rango?
+            = "#{h.fecha} - #{h.fecha(rango)}"
+          - else
+            = h.fecha
+        - unless mostrar_rango?
+          %td.list-column{class: h.error? ? 'danger' : '' }=h.valor
+        %td.list-column{class: (h.error? or h.sobre_umbral?) ? 'danger' : ''}=h.concentracion.round(3)
