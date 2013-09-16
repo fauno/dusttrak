@@ -4,6 +4,8 @@ class Medicion < ActiveRecord::Base
 
   delegate :cero, :escala, to: :aparato, allow_nil: true
 
+  default_scope order('created_at desc')
+
   # TODO refactorizarlo con NullObject
   def aparato
     super || Aparato.new
