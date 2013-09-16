@@ -30,14 +30,6 @@ shell.say ""
 # Umbral de error default
 Configuracion.create unless Configuracion.any?
 
-if ENV['password'].present?
-  Usuario.create(nombre: 'admin', password: ENV['password'])
-else
-  logger.info 'Si querías crear un admin probá de nuevo con:
-
-             rake db:seed password="el password del admin global"'
-end
-
 # Aparatos de acuerdo a los historical existentes. Se crean con cero y escala
 # por default. Hay que modificarlos y correr
 #

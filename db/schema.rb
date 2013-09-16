@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 10) do
+ActiveRecord::Schema.define(:version => 11) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -44,14 +44,6 @@ ActiveRecord::Schema.define(:version => 10) do
     t.float    "concentracion", :null => false
     t.integer  "valor",         :null => false
     t.datetime "created_at",    :null => false
-  end
-
-  create_table "usuarios", :force => true do |t|
-    t.string   "nombre"
-    t.string   "password_hash"
-    t.string   "password_salt"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
   end
 
 end
