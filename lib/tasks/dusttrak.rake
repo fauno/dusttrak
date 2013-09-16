@@ -15,6 +15,8 @@ namespace :dusttrak do
 
   desc "Instala el trigger para que los nuevos historical creen mediciones"
   task :instalar_trigger => :environment do
+    require 'io/console'
+
     spec = ActiveRecord::Base.connection_config
 
     logger.info "La instalación del trigger necesita permisos de superusuario para la base de datos"
@@ -24,14 +26,14 @@ namespace :dusttrak do
       ENV['usuario']
     else
       logger.info "Superusuario de la base de datos:"
-      STDIN.gets.chomp
+      STDIN.noecho(&:gets).chomp
     end
 
     spec[:password] = if ENV['password'].present?
       ENV['password']
     else
       logger.info "Password del superusuario:"
-      STDIN.gets.chomp
+      STDIN.noecho(&:gets).chomp
     end
 
     pool = ActiveRecord::Base.establish_connection(spec)
