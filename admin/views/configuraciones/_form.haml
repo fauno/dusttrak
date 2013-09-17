@@ -3,7 +3,7 @@
   =f.label :umbral, :class => 'control-label'
   .controls
     =f.text_field :umbral, :class => 'input-xlarge input-with-feedback', :autofocus => true
-    %span.help-inline=error ? f.error_message_on(:umbral, :class => 'text-error') : pat(:example)
+    %span.help-inline=error ? f.error_message_on(:umbral, :class => 'text-error') : ""
 
 .form-actions
   =f.submit pat(:save), :class => 'btn btn-primary'
