@@ -60,15 +60,17 @@ Dusttrak::App.helpers do
     # Generar la "vista"
     h = []
     historical.each do |i|
-      r = {
-       "Id" => i.grd_id,
-       "Concentracion" => i.concentracion
-      }
+      r = {}
+      r["Id"] = i.grd_id
 
-      r["Rango del Promedio"]= "#{i.fecha} - #{i.fecha(rango)}" if i.rango?
-      r["Fecha"] = i.created_at if not i.rango?
-      # No hay valor en promedios
-      r["Valor"] = i.valor if i.valor?
+      if mostrar_rango?
+        r["Rango del Promedio"] = "#{i.fecha} - #{i.fecha(rango)}"
+      else
+        r["Fecha"] = i.created_at
+        r["Valor"] = i.valor
+      end
+
+      r["Concentracion"] = i.concentracion
 
       h.push (r)
     end
