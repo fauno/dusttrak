@@ -1,0 +1,54 @@
+%ul.nav.nav-tabs
+  %li.active=link_to tag_icon(:list, pat(:list)), url(:configuraciones, :index)
+  %li=link_to tag_icon(:plus, pat(:new)), url(:configuraciones, :new)
+
+.tabs-content
+  %table#list.table.table-striped.table-hover.table-condensed
+    %thead
+      %tr
+        %th.header.list-menu
+          .dropdown
+            %a.list-menu-toggle.dropdown-toggle{:href => '#', :'data-toggle' => :dropdown}
+              =tag_icon :magic
+              %span.caret
+            %ul.list-menu.dropdown-menu{:role => :menu}
+              %li.list-menu-wrapper=link_to tag_icon(:check, pat(:select_all)), '#', :id => 'select-all', :class => 'list-menu-link'
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon(:'check-empty', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled'
+              %li.list-menu-divider.divider
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon(:trash, pat(:delete_selected)), '#', :id => 'delete-selected', :class => 'list-menu-link list-menu-link-disabled'
+                .list-menu-popover-delete-selected.popover.right
+                  .arrow
+                  %h3.popover-title=pat(:delete_selected_title)
+                  .popover-content
+                    -form_tag url(:configuraciones, :destroy_many), :method => :delete do
+                      =hidden_field_tag :configuracion_ids, :'data-delete-many-ids' => true
+                      =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
+                      .btn.btn-small.cancel=pat(:cancel)
+        %th.header= mat(:configuracion, :id)
+        %th.header= mat(:configuracion, :umbral)
+        %th.header= mat(:configuracion, :created_at)
+        %th.header= mat(:configuracion, :updated_at)
+        %th.header.list-row-action-header
+
+    %tbody
+      -@configuraciones.each do |configuracion|
+        %tr.list-row
+          %td.list-column.list-selectable
+            =check_box_tag 'configuracion_ids[]', :value => configuracion.id, :class => 'list-selectable-checkbox'
+          %td.list-column=configuracion.id
+          %td.list-column=configuracion.umbral
+          %td.list-column=time_ago_in_words configuracion.created_at
+          %td.list-column=time_ago_in_words configuracion.updated_at
+          %td.list-column.list-row-action
+            .list-row-action-wrapper
+              =link_to tag_icon(:edit), :href => url(:configuraciones, :edit, :id => configuracion.id), :rel => :tooltip, :title => "#{pat(:edit)} configuracion", :class => 'list-row-action-wrapper-link'
+              =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} configuracion", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              .popover.list-row-action-popover-delete-one.left
+                .arrow
+                %h3.popover-title=pat(:delete, :model => "configuracion")
+                .popover-content
+                  -form_tag url(:configuraciones, :destroy, :id => configuracion.id), :method => :delete do
+                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
+                    .btn.btn-small.cancel=pat(:cancel)

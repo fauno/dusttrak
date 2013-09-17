@@ -34,6 +34,7 @@ module Dusttrak
     end
 
     access_control.roles_for :admin do |role|
+    role.project_module :configuraciones, '/configuraciones'
     role.project_module :aparatos, '/aparatos'
     role.project_module :accounts, '/accounts'
     end
