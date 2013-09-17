@@ -11,6 +11,6 @@
 
   %body
     .container
-      %h1= link_to 'Dusttrak', '/'
-      =link_to('Admin', '/admin', :class => 'btn btn-danger pull-right')
+      %h1= link_to 'Dusttrak', url(:index)
+      =link_to('Admin', "#{url(:index)}admin", :class => 'btn btn-danger pull-right')
       = yield
