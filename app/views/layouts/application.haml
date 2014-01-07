@@ -7,10 +7,33 @@
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
 
     = stylesheet_link_tag 'bootstrap.min', 'bootstrap-theme',
-        'bootstrap-datepicker', media: 'screen'
+        'bootstrap-datepicker', 'custom', media: 'screen'
 
   %body
-    .container
-      %h1= link_to 'Dusttrak', url(:index)
+    .navbar.navbar-inverse.navbar-fixed-top{role: 'navigation'}
+      .navbar-header
+        .container
+          %button{type: 'button',
+                  class: 'navbar-toggle',
+                  data_toggle: 'collapse',
+                  data_target: '.nav-collapse'}
+            %span.sr-only Menú
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a{class: 'navbar-brand', href: '/'} CCyS
+          .nav-collapse.collapse
+          %ul.nav.navbar-nav
+            %li
+              %a{href: 'aqm'} Monitoreo de gases
+            %li
+              %a{href: 'dusttrak'} Particulado PM10
+            %li
+              %a{href: 'http://ccys.siafa.com.ar/manuales'} Manuales
+            %li
+              %a{href: 'http://ccys.siafa.com.ar/software'} Software
+    .container.white
+      .page-header
+        %h1= link_to 'Particulado PM10', url(:index)
       =link_to('Admin', "#{url(:index)}admin", :class => 'btn btn-danger pull-right')
       = yield
