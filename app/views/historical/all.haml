@@ -8,8 +8,6 @@
     %tr
       %th.header Id
       %th.header= mostrar_rango? ? 'Rango del promedio' : 'Fecha'
-      - unless mostrar_rango?
-        %th.header Valor
       %th.header Concentración mg/m3
 
   %tbody
@@ -21,6 +19,4 @@
             = "#{h.fecha} - #{h.fecha(rango)}"
           - else
             = h.fecha
-        - unless mostrar_rango?
-          %td.list-column{class: h.error? ? 'danger' : '' }=h.valor
         %td.list-column{class: (h.error? or h.sobre_umbral?) ? 'danger' : ''}=h.concentracion.round(3)
